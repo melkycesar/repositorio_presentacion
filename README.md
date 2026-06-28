@@ -19,6 +19,7 @@ repositorio_presentacion/
 │   ├── Factura para Credito Fiscal/   # Factura para crédito fiscal
 │   ├── Fondos Presentaciones/         # Fondos/plantillas para presentaciones (21 imágenes numeradas)
 │   ├── Iconos/                        # Set de íconos temáticos (energía, automatización, equipos, personas, etc.)
+│   ├── Imagenes de Rep Dom/           # Imágenes de lugares emblemáticos de República Dominicana
 │   ├── Manual Presentaciones/         # Manual de uso de presentaciones (10 páginas)
 │   ├── Presentacion/                  # Presentación corporativa completa (23 páginas)
 │   ├── Service Report/                # Reporte de servicio (8 páginas)
@@ -57,6 +58,7 @@ Contiene todo el contenido gráfico y documental que alimenta las presentaciones
 | `Factura Hotel/`, `Factura Soporte/`, `Factura Stimated Quotation/`, `Factura para Credito Fiscal/` | Facturas y documentos administrativos/comerciales de respaldo. |
 | `Fondos Presentaciones/` | Set de 21 fondos/plantillas base numeradas para construir presentaciones. |
 | `Iconos/` | Íconos temáticos individuales (válvulas, turbinas, subestaciones, HMI, DCS, equipos, personas, etc.) para uso en presentaciones y documentos. |
+| `Imagenes de Rep Dom/` | Imágenes de lugares emblemáticos de República Dominicana (Altos de Chavón, Basílica de Higüey, Samaná, Faro a Colón, Fortaleza San Felipe, Los Tres Ojos, Bayahíbe, Plaza Independencia, Puerto Plata, Alcázar de Colón, etc.). |
 | `Manual Presentaciones/` | Manual con lineamientos de uso de las presentaciones (10 páginas). |
 | `Presentacion/` | Presentación corporativa completa de Nortica Systems (23 páginas). |
 | `Service Report/` | Plantilla/ejemplo de reporte de servicio técnico. |
