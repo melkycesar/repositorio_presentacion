@@ -26,11 +26,13 @@ repositorio_presentacion/
 │   └── Test/                          # Material de prueba/test (13 páginas)
 │
 ├── ui_presentacion/                   # Elementos de interfaz e identidad visual
-│   └── logos_nortica/                 # Logotipos oficiales de Nortica Systems
-│       ├── logo_blanco_para_fondo_orcuro_un_color.png   # Logo en blanco, un color, para fondo oscuro
-│       ├── logo_blanco_y_cyan_para_fondo_orcuro.png     # Logo en blanco y cyan, para fondo oscuro
-│       ├── logo_default.png                             # Logo por defecto (uso general)
-│       └── logo_manual.png                               # Logo usado en el manual de marca
+│   ├── logos_nortica/                 # Logotipos oficiales de Nortica Systems
+│   │   ├── logo_blanco_para_fondo_orcuro_un_color.png   # Logo en blanco, un color, para fondo oscuro
+│   │   ├── logo_blanco_y_cyan_para_fondo_orcuro.png     # Logo en blanco y cyan, para fondo oscuro
+│   │   ├── logo_default.png                             # Logo por defecto (uso general)
+│   │   └── logo_manual.png                               # Logo usado en el manual de marca
+│   └── imagen_fondo_ui/               # Imagen de fondo para interfaces/herramientas internas
+│       └── background_image.png
 │
 └── firma_correos/                     # Plantilla de firma de correo electrónico corporativa
     ├── firma.html                     # Código HTML de la firma de correo
@@ -67,6 +69,7 @@ Contiene los elementos de identidad visual reutilizables en cualquier presentaci
 | Carpeta | Contenido |
 |---|---|
 | `logos_nortica/` | Variantes del logotipo oficial de Nortica Systems para distintos fondos y usos (fondo oscuro en blanco, fondo oscuro blanco/cyan, versión por defecto, versión de manual de marca). |
+| `imagen_fondo_ui/` | Imagen de fondo utilizada en interfaces o herramientas internas (`background_image.png`). |
 
 ### `firma_correos/`
 Plantilla de firma de correo electrónico corporativa, lista para usar en clientes de correo (Outlook, Gmail, etc.).
