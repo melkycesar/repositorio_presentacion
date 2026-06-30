@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Respuesta a Comentarios — Proyecto Plantillas Nortica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#071F2B;
+    --navy-soft:#0c2c3d;
+    --teal:#1BD1A5;
+    --teal-dark:#0e8f70;
+    --gray:#5a6b73;
+    --bg-light:#f4f6f7;
+    --bg-lighter:#eef1f2;
+    --bg-page:#faf9f5;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg-page);
+    color:var(--navy);
+  }
+  /* ===== HEADER ===== */
+  header.site{
+    background:linear-gradient(120deg,var(--navy) 0%,var(--navy-soft) 55%,#0a3a44 100%);
+    color:var(--white);
+    padding:34px 48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 6px 22px rgba(7,31,43,0.25);
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  header.site .brand{display:flex;align-items:center;gap:18px;}
+  header.site img.logo{height:42px;}
+  header.site .titles h1{margin:0;font-size:20px;font-weight:800;letter-spacing:.3px;}
+  header.site .titles p{margin:2px 0 0;font-size:12.5px;color:#9fd9cd;font-weight:500;letter-spacing:.4px;text-transform:uppercase;}
+  header.site .meta{text-align:right;font-size:12px;color:#bcd2d6;line-height:1.5;}
+  header.site .meta strong{color:var(--teal);}
+
+  /* ===== COLUMN HEADERS ===== */
+  .columns-head{
+    display:grid;
+    grid-template-columns: 1.15fr 1fr 1.15fr;
+    gap:18px;
+    max-width:1500px;
+    margin:28px auto 0;
+    padding:0 32px;
+  }
+  .columns-head div{
+    background:var(--navy);
+    color:var(--white);
+    padding:12px 18px;
+    border-radius:10px 10px 0 0;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .columns-head div.col-c{background:linear-gradient(100deg,var(--teal-dark),var(--teal));color:var(--navy);}
+  .columns-head div span.dot{width:8px;height:8px;border-radius:50%;background:var(--teal);}
+  .columns-head div.col-c span.dot{background:var(--navy);}
+
+  /* ===== EMAIL GROUP DIVIDER ===== */
+  .email-divider{
+    max-width:1500px;
+    margin:34px auto 10px;
+    padding:0 32px;
+  }
+  .email-divider .card{
+    background:var(--white);
+    border:1px solid var(--bg-lighter);
+    border-left:5px solid var(--teal);
+    border-radius:10px;
+    padding:14px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    box-shadow:0 2px 10px rgba(7,31,43,0.06);
+  }
+  .email-divider .who{font-weight:800;font-size:15px;color:var(--navy);}
+  .email-divider .who small{display:block;font-weight:500;font-size:12px;color:var(--gray);margin-top:2px;}
+  .email-divider .when{font-size:12px;color:var(--gray);font-weight:600;}
+
+  /* ===== GRID BODY ===== */
+  .grid-wrap{
+    max-width:1500px;
+    margin:0 auto 60px;
+    padding:0 32px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .row{
+    display:grid;
+    grid-template-columns: 1.15fr 1fr 1.15fr;
+    gap:18px;
+    align-items:stretch;
+  }
+  .cell{
+    background:var(--white);
+    border-radius:12px;
+    padding:18px 20px;
+    border:1px solid var(--bg-lighter);
+    box-shadow:0 2px 8px rgba(7,31,43,0.05);
+  }
+  .cell .num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;height:24px;
+    background:var(--navy);
+    color:var(--teal);
+    border-radius:50%;
+    font-size:11.5px;
+    font-weight:800;
+    margin-right:8px;
+  }
+  /* Comment cell */
+  .cell.comment{border-left:4px solid var(--navy);}
+  .cell.comment .author{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--teal-dark);margin-bottom:6px;}
+  .cell.comment p{margin:0;font-size:14px;line-height:1.55;color:#22343d;}
+  .cell.comment p.es-pregunta{color:var(--navy-soft);font-style:italic;}
+  .tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:10.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+    color:var(--navy);
+    background:var(--bg-lighter);
+    padding:3px 9px;
+    border-radius:20px;
+  }
+
+  /* Gallery cell */
+  .cell.gallery{display:flex;flex-direction:column;justify-content:center;background:var(--bg-light);}
+  .cell.gallery .folder-label{font-size:10.5px;font-weight:700;text-transform:uppercase;color:var(--gray);letter-spacing:.4px;margin-bottom:10px;text-align:center;}
+  .thumbs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+  }
+  .thumb{
+    width:84px;
+    height:84px;
+    border-radius:8px;
+    overflow:hidden;
+    cursor:zoom-in;
+    border:2px solid var(--white);
+    box-shadow:0 2px 6px rgba(7,31,43,0.18);
+    background:var(--white);
+    transition:transform .15s ease, box-shadow .15s ease;
+    position:relative;
+  }
+  .thumb:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 16px rgba(7,31,43,0.28);}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .thumb .pg{
+    position:absolute;bottom:2px;right:3px;
+    background:rgba(7,31,43,0.75);color:#fff;font-size:8.5px;
+    padding:1px 4px;border-radius:4px;font-weight:700;
+  }
+  .no-doc{font-size:12px;color:var(--gray);text-align:center;font-style:italic;padding:20px 0;}
+
+  /* Claude cell */
+  .cell.claude{background:linear-gradient(165deg,#ffffff 0%, #f3fbf9 100%);border-left:4px solid var(--teal);}
+  .cell.claude .claude-label{
+    display:flex;align-items:center;gap:6px;
+    font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
+    color:var(--teal-dark);margin-bottom:8px;
+  }
+  .cell.claude .claude-label .ico{
+    width:16px;height:16px;border-radius:5px;
+    background:var(--navy);
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:9px;color:var(--teal);font-weight:900;
+  }
+  .cell.claude p{margin:0 0 8px;font-size:13.5px;line-height:1.55;color:#1d2f37;}
+  .cell.claude p:last-child{margin-bottom:0;}
+  .verdict{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;
+    padding:4px 10px;border-radius:20px;margin-bottom:10px;
+  }
+  .verdict.aplicar{background:#e3f9f1;color:var(--teal-dark);}
+  .verdict.ajustar{background:#fff3e0;color:#b5680a;}
+  .verdict.aclarar{background:#f0eefc;color:#5b3fae;}
+  .verdict.na{background:var(--bg-lighter);color:var(--gray);}
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox{
+    position:fixed;inset:0;
+    background:rgba(7,31,43,0.92);
+    display:none;
+    align-items:center;justify-content:center;
+    z-index:999;
+    flex-direction:column;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox .stage{
+    overflow:hidden;
+    width:92vw;height:82vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:grab;
+    border-radius:6px;
+    box-shadow:0 10px 50px rgba(0,0,0,0.5);
+  }
+  .lightbox .stage:active{cursor:grabbing;}
+  .lightbox .stage img{
+    display:block;
+    max-width:92vw;
+    max-height:82vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    transform-origin:center center;
+    will-change:transform;
+    user-select:none;
+    -webkit-user-drag:none;
+    pointer-events:none;
+  }
+  .lightbox .caption{color:#dff5f0;font-size:13px;margin-top:14px;font-weight:600;letter-spacing:.3px;}
+  .lightbox .hint{color:#7fa9a0;font-size:11px;margin-top:4px;}
+  .lightbox .close{
+    position:absolute;top:22px;right:30px;
+    color:#fff;font-size:30px;cursor:pointer;
+    width:42px;height:42px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,0.08);
+    transition:background .15s;
+  }
+  .lightbox .close:hover{background:rgba(255,255,255,0.18);}
+  .lightbox .nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    color:#fff;font-size:26px;cursor:pointer;
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,0.08);
+  }
+  .lightbox .nav:hover{background:rgba(255,255,255,0.18);}
+  .lightbox .nav.prev{left:24px;}
+  .lightbox .nav.next{right:24px;}
+
+  footer.site{
+    text-align:center;
+    padding:30px;
+    color:var(--gray);
+    font-size:11.5px;
+    border-top:1px solid var(--bg-lighter);
+  }
+
+  @media (max-width: 1100px){
+    .columns-head, .row{grid-template-columns:1fr;}
+    .columns-head div:not(:first-child){border-radius:0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <img class="logo" src="https://raw.githubusercontent.com/melkycesar/repositorio_presentacion/master/ui_presentacion/logos_nortica/logo_blanco_y_cyan_para_fondo_orcuro.png" alt="Nortica Systems">
+    <div class="titles">
+      <h1>Respuesta a Comentarios</h1>
+      <p>Proyecto Plantillas Nortica · Revisión de Diseño</p>
+    </div>
+  </div>
+  <div class="meta">
+    Hilo: <strong>RE: Proyecto Plantillas Nortica</strong><br>
+    24 de junio, 2026 · 3 correos · 6 destinatarios
+  </div>
+</header>
+
+<div class="columns-head">
+  <div><span class="dot"></span>Comentario del equipo</div>
+  <div><span class="dot"></span>Documento referenciado</div>
+  <div class="col-c"><span class="dot"></span>Análisis de Claude</div>
+</div>
+
+<div class="grid-wrap" id="grid-wrap"></div>
+
+<div class="lightbox" id="lightbox">
+  <div class="close" id="lb-close">&times;</div>
+  <div class="nav prev" id="lb-prev">&#8249;</div>
+  <div class="nav next" id="lb-next">&#8250;</div>
+  <div class="stage" id="lb-stage">
+    <img id="lb-img" src="" alt="">
+  </div>
+  <div class="caption" id="lb-caption"></div>
+  <div class="hint">Rueda del mouse para zoom · arrastrar para mover · Esc para cerrar</div>
+</div>
+
+<footer class="site">
+  Documento de trabajo interno — Nortica Systems · Generado para cierre del Proyecto Plantillas Nortica
+</footer>
+
+<script>
+const RAW_BASE = "https://raw.githubusercontent.com/melkycesar/repositorio_presentacion/master/";
+const FOLDER = RAW_BASE + "imagenes_contenido_presentacion/";
+
+// Helper to build file lists quickly
+const presentacion = Array.from({length:23},(_,i)=>`Nortica System_Presentacion_Page_${String(i+1).padStart(2,'0')}.jpg`);
+const technicalData = Array.from({length:11},(_,i)=>`Nortica Systems_Technical Data_Page_${String(i+1).padStart(2,'0')}.jpg`);
+
+const DATA = [
+{
+  email:1,
+  emailMeta:{who:"Nairobi Alcéquiez", role:"Administrative Manager", when:"Miércoles 24 de junio, 2026 · 10:01 AM"},
+  items:[
+    {
+      autor:"Nairobi Alcéquiez",
+      texto:"En general lo veo bien. Tomar en cuenta la proporción de los márgenes en algunos de los documentos, en algunos casos está muy pronunciado a la izquierda; pensar que digitalmente es práctico, pero cuando el cliente reciba y deba imprimir para preparar algún tipo de expediente y/o archivo puede presentar inconvenientes.",
+      tag:"General · Márgenes",
+      folder:"Presentacion",
+      files:[presentacion[0], presentacion[1]],
+      folder2:"Technical Data",
+      files2:[technicalData[0], technicalData[1]],
+      verdict:"ajustar",
+      claude:[
+        "Tiene razón técnicamente: un margen izquierdo angosto pensado para lectura en pantalla deja poco espacio para perforado de 3 anillos o engrapado de expediente, que en oficina dominicana suele requerir 2–2.5 cm libres a la izquierda en hojas impresas.",
+        "Sugerencia concreta: definir un margen mínimo de impresión de 2 cm en todos los lados para los documentos transaccionales (facturas, checklist, reportes) y reservar la asimetría de diseño solo para piezas 100% digitales como la presentación o el brochure, que rara vez se imprimen para archivo."
+      ]
+    },
+    {
+      autor:"Nairobi Alcéquiez",
+      texto:"Propuesta comercial: ¿en las propuestas comerciales estaremos utilizando solo esta imagen?, por el tema de que tiene integradas las turbinas. ¿Está correcto el terminar de nuestra página web en azul? En lo particular me gusta más el pie de página centrado, tal como está el encabezado.",
+      tag:"Commercial Proposal",
+      folder:"Commercial Proposal",
+      files:["Nortica Systems_Commercial Proposal_Page_1.jpg","Nortica Systems_Commercial Proposal_Page_2.jpg","Nortica Systems_Commercial Proposal_Page_3.jpg"],
+      verdict:"aclarar",
+      claude:[
+        "La portada que tengo a la vista usa una imagen nocturna de planta/torres de enfriamiento, no veo turbinas integradas explícitamente — es posible que la versión que ella revisó sea distinta a la que está en el repositorio, o que se refiera a otra plantilla. Vale la pena confirmar cuál imagen vio antes de decidir un cambio.",
+        "Sobre la pregunta de la página web terminando en azul: esto es un comentario sobre nortica.do, no sobre los documentos de Office entregados en este proyecto — no tengo ese activo para evaluarlo, recomiendo responderlo por separado con quien gestione el sitio web.",
+        "Sobre el pie de página centrado: estoy de acuerdo en que centrar el pie iguala visualmente el peso del encabezado y da una sensación más balanceada y formal; es un ajuste de bajo costo y alto impacto que recomiendo aplicar como estándar a todas las plantillas."
+      ]
+    },
+    {
+      autor:"Nairobi Alcéquiez",
+      texto:"Factura hotel — la imagen referencia no está relacionada a POP, entiendo buscamos resaltar atributos de nuestra provincia. Se tiende a confundir la tasa de cambio, sugiero posicionarla arriba como dato informativo o en la parte inferior a la izquierda, en síntesis, solo a la derecha quede el precio total.",
+      tag:"Factura Hotel",
+      folder:"Factura Hotel",
+      files:["Nortica Systems_Factura_Hotel.jpg"],
+      verdict:"ajustar",
+      claude:[
+        "Viendo la factura: la imagen del encabezado muestra el Alcázar de Colón en la Zona Colonial de Santo Domingo, que es un atractivo de la capital, no de Puerto Plata, que es donde está la oficina de Nortica (Punta Cana también aparece en el documento como instalación del proyecto). El comentario es válido: conviene usar una imagen representativa de la provincia donde opera la empresa o del lugar del proyecto, no un genérico 'República Dominicana'.",
+        "Sobre la tasa de cambio: en la captura actual, la fila 'USD/DOP $ 59.28' aparece suelta en la parte inferior izquierda, separada de la tabla de totales — coincido en que se lee como un dato aislado y puede confundirse con un monto más de la factura. Recomiendo etiquetarla claramente como 'Tasa de cambio referencial' y mantener solo el total final destacado a la derecha, tal como ella propone."
+      ]
+    },
+    {
+      autor:"Nairobi Alcéquiez",
+      texto:"Factura para crédito fiscal — no se identifica el sombreado gris en la parte del encabezado como está en el documento de la factura del hotel. No manejamos números independientes de emisión de factura, entiendo que el dato debajo de Invoice está sobrando. No se cita la información correspondiente a nuestras cuentas bancarias ni términos de pago (crédito). En este documento se refleja el tema de la justificación del documento a la izquierda.",
+      tag:"Factura Crédito Fiscal",
+      folder:"Factura para Credito Fiscal",
+      files:["Nortica Systems_Factura para Credito Fiscal.jpg"],
+      verdict:"aclarar",
+      claude:[
+        "Confirmo el primer punto: la Factura Hotel tiene una franja gris suave detrás del logo en el encabezado, mientras que la Factura para Crédito Fiscal tiene el mismo bloque en blanco puro. Es una inconsistencia real entre plantillas hermanas y debería unificarse.",
+        "Los otros tres puntos no coinciden con la versión que tengo en pantalla: el documento actual sí muestra 'eNCF: E310000000091 / válido hasta 31/12/2026' (que es el comprobante fiscal oficial, no un número arbitrario), sí incluye Banco Popular Dominicano y Banco Santa Cruz con sus números de cuenta, y sí indica 'Terms of Payment: 45 Days'. Todo el contenido está alineado a la izquierda de forma consistente, similar a la factura de hotel.",
+        "Mi recomendación es revisar con Nairobi si comentó sobre una versión anterior/distinta del archivo, ya que en la versión actual estos tres señalamientos parecen ya resueltos — vale la pena cerrar el ciclo confirmándolo con ella antes de invertir tiempo en 'corregir' algo que ya está presente."
+      ]
+    },
+    {
+      autor:"Nairobi Alcéquiez",
+      texto:"Factura Stimated Quotation — pie de página centrado al documento. Definir si el color y tipo de letra en cuanto a pie de página varía según el documento.",
+      tag:"Stimated Quotation",
+      folder:"Factura Stimated Quotation",
+      files:["Nortica Systems_Factura_Stimated Quotation_Page_1.jpg","Nortica Systems_Factura_Stimated Quotation_Page_2.jpg"],
+      verdict:"aplicar",
+      claude:[
+        "Correcto: el pie de página actual ('Nortica Systems EIRL. RNC...') está alineado a la izquierda mientras el resto del documento usa un layout más centrado/estructurado con borde redondeado en la esquina inferior derecha — se nota descentrado respecto a la composición general.",
+        "Sobre la consistencia tipográfica del pie: estoy totalmente de acuerdo en que debe definirse un estándar único (misma fuente, tamaño y color de gris) para el pie de página en todas las plantillas de facturación, y no dejarlo a discreción de cada documento — esto refuerza la percepción de un sistema de plantillas coherente en vez de piezas sueltas."
+      ]
+    },
+    {
+      autor:"Nairobi Alcéquiez",
+      texto:"Firma de correos — no se reflejan los iconos de las compañías que son partners. La dirección de la página web se visualiza como rellenando un hueco, entiendo podemos colocarlo a la derecha debajo de dirección.",
+      tag:"Firma de Correos",
+      folder:"Firma Correos",
+      files:["img_signature.png","logo_default.png"],
+      verdict:"ajustar",
+      claude:[
+        "No encuentro en los activos provistos una sección de logos de empresas partner dentro de la firma de correo actual — solo el banner de marca y el logo. Si la versión anterior los incluía, deberían restaurarse; si nunca se implementaron, es un punto pendiente válido a agregar al diseño final.",
+        "Sobre la URL de la página web 'rellenando un hueco': es un patrón común cuando el layout de la firma usa columnas de ancho fijo y el texto de la web queda forzado en un espacio que no le corresponde visualmente. Moverla a la derecha, debajo de la dirección física, como ella sugiere, es razonable y evita ese efecto de 'parche'."
+      ]
+    },
+  ]
+},
+{
+  email:2,
+  emailMeta:{who:"Liliana Esteban", role:"Education Coordinator", when:"Miércoles 24 de junio, 2026 · 2:39 PM"},
+  items:[
+    {
+      autor:"Liliana Esteban",
+      texto:"Estoy de acuerdo con los comentarios de Nairobi; adicional a esto, la plantilla de los certificados está muy bonita, solo que tiene mucho color oscuro en la parte superior y el costo de impresión sería más elevado.",
+      tag:"Certificado",
+      folder:"Certificado",
+      files:["Nortica System_Certificado.jpg"],
+      verdict:"ajustar",
+      claude:[
+        "Viendo el certificado: en efecto, aproximadamente el 60% superior del documento es un degradado sólido azul-verdoso oscuro de borde a borde, que en una impresora de oficina (inkjet o láser color) consume considerablemente más tinta/tóner que un fondo blanco con acentos de color — el comentario sobre costo de impresión es técnicamente acertado, especialmente si se emiten certificados en volumen para cada entrenamiento.",
+        "Sugerencia: conservar el fondo oscuro solo como franja superior delgada (por ejemplo el 25–30% del alto) con el logo y título, y dejar el cuerpo principal (nombre del participante, curso, firmas) sobre fondo blanco con líneas/acentos en el verde de marca — mantiene la elegancia del diseño actual pero reduce drásticamente el área de tinta sólida."
+      ]
+    },
+  ]
+},
+{
+  email:3,
+  emailMeta:{who:"Karen Peña", role:"", when:"Miércoles 24 de junio, 2026 · 4:55 PM"},
+  items:[
+    {
+      autor:"Karen Peña",
+      texto:"De manera personal, pensaba que el logo de Nortica tendría algún cambio o actualización.",
+      tag:"Logo",
+      folder:"__logos__",
+      files:["logo_default.png","logo_manual.png","logo_blanco_y_cyan_para_fondo_orcuro.png"],
+      verdict:"aclarar",
+      claude:[
+        "Esto es una decisión de alcance de proyecto más que un defecto de diseño: si el brief original definía 'rediseñar las plantillas con la identidad actual' y no 'rediseñar el logo', mantenerlo igual es correcto y esperado.",
+        "Si existe apetito real por actualizar el isotipo, eso es un proyecto de branding aparte (con su propio proceso de conceptos, validación y manual de marca) y no debería mezclarse con la entrega de plantillas — recomiendo aclarar con el equipo si esto se documenta como una iniciativa futura separada, para no bloquear el cierre de este proyecto."
+      ]
+    },
+    {
+      autor:"Karen Peña",
+      texto:"Aunque la paleta de colores sigue la línea de los azules y grises como principales, pienso que la información a resaltar se pierde o pasa desapercibida según lo propuesto; visualmente no causa el impacto-enfoque que se busca.",
+      tag:"Paleta de Colores",
+      folder:"Ejemplos uso Nueva Linea Grafica",
+      files:["2_Paleta_Cromatica.png"],
+      verdict:"ajustar",
+      claude:[
+        "Revisando la paleta cromática definida: la primaria son 8 tonos de azul que van de muy claro a muy oscuro, y la de 'resaltar' son verdes/teal — pero en varios documentos (facturas, certificado) el dato más importante (el total a pagar, el nombre del participante) está renderizado en el mismo azul oscuro que el resto de las tablas, sin usar el verde de 'resaltar' como acento de jerarquía.",
+        "Esto valida el comentario de Karen: tener una paleta de acento no sirve si no se aplica consistentemente para destacar el dato clave de cada documento. Recomiendo una regla simple: 'todo monto/dato crítico se pinta en el verde de marca (#1BD1A5) o se resalta con fondo claro', dejando los azules para estructura (encabezados de tabla, líneas) y no para el contenido que debe saltar a la vista."
+      ]
+    },
+    {
+      autor:"Karen Peña",
+      texto:"Lo que respecta al certificado pienso debe llevar la firma del coordinador adicional a la del facilitador, en ocasiones los entrenamientos y formaciones son impartidos por externos a Nortica.",
+      tag:"Certificado · Firmas",
+      folder:"Certificado",
+      files:["Nortica System_Certificado.jpg"],
+      verdict:"aplicar",
+      claude:[
+        "Confirmado: el certificado actual solo tiene dos líneas de firma — 'Facilitador' y 'Nortica Systems' (genérica, sin nombre/cargo) — no hay una línea específica para 'Coordinador'.",
+        "El argumento de Karen es sólido operativamente: si un facilitador externo dicta el curso, Nortica necesita una firma propia con responsabilidad institucional sobre el certificado. Sugiero reemplazar la línea genérica 'Nortica Systems' por 'Nombre del Coordinador — Education Coordinator', manteniendo las dos firmas lado a lado como ya está estructurado el documento."
+      ]
+    },
+    {
+      autor:"Karen Peña",
+      texto:"A mi entender la parte de los 'accesorios' carga un poco las plantillas y los elementos seleccionados dan a entender que nuestro enfoque podría ir más a lo mecánico que a la parte de automation y controles.",
+      tag:"Accesorios / Iconografía",
+      folder:"Accesorios",
+      files:["Turbina de Gas-Vapor en Corte.png","Motor Generador Diésel.png","Consola de Monitoreo SCADA.png","Válvula de Control de Flujo con Actuador Digital.png"],
+      verdict:"ajustar",
+      claude:[
+        "Revisando el set de accesorios: de 10 elementos, al menos 5 (turbina de gas-vapor, motor generador diésel, transformador de potencia, interruptor de subestación, válvula con actuador) son representaciones de equipo electromecánico pesado, y solo 1 ('Consola de Monitoreo SCADA') comunica claramente software/automatización y control.",
+        "El comentario de Karen tiene fundamento visual: si el posicionamiento de Nortica es hacia automatización, controles e instrumentación (más que generación/mecánica pura), el balance del set debería invertirse — priorizar SCADA, HMI, sensores de campo, PLC/DCS y redes Modbus (que ya existen como íconos en la carpeta 'Iconos') por encima de las piezas mecánicas grandes, o usarlas solo como fondo decorativo de baja prioridad visual."
+      ]
+    },
+    {
+      autor:"Karen Peña",
+      texto:"Las tablas usadas para las facturas de hotel, mileage, stimated quotation, facturas por service rates tienen muchos colores, visualmente los montos totales no se resaltan, se pierden en la información. De igual forma la tabla, si fuere necesario añadir elementos, visualmente sería complicado ajustar por los bordes azules que encapsulan la información.",
+      tag:"Tablas de Facturación",
+      folder:"Factura Hotel",
+      files:["Nortica Systems_Factura_Hotel.jpg"],
+      folder2:"Factura Stimated Quotation",
+      files2:["Nortica Systems_Factura_Stimated Quotation_Page_1.jpg"],
+      verdict:"ajustar",
+      claude:[
+        "Estoy de acuerdo con esta observación, es la más importante de todo el hilo desde el punto de vista de usabilidad: en la factura de hotel y en la 'Stimated Quotation' las tablas alternan franjas azul oscuro / celeste / gris fila por fila, y el 'TOTAL' final tiene el mismo peso visual (mismo tono azul oscuro de fondo) que cualquier encabezado de sección — no hay jerarquía cromática que guíe el ojo al número que realmente importa.",
+        "Sobre el problema estructural que menciona (bordes azules que 'encapsulan' la tabla dificultando añadir filas): esto pasa porque el borde redondeado de la esquina inferior está dibujado como parte fija del diseño del documento en vez de ser un contenedor flexible — cualquier fila adicional rompe la curva. Recomiendo rediseñar la tabla como un bloque rectangular simple con solo el total final resaltado (fondo verde/teal de marca, texto blanco, mayor tamaño de fuente), y mover los elementos decorativos (curvas, fondos) fuera del área de datos variables para que sea expansible sin romper el diseño."
+      ]
+    },
+    {
+      autor:"Karen Peña",
+      texto:"En los formatos, no se figura...",
+      tag:"Comentario incompleto",
+      folder:null,
+      files:[],
+      verdict:"aclarar",
+      claude:[
+        "Esta línea del correo quedó incompleta ('En los formatos, no se figura') — no hay forma de inferir con certeza qué quiso decir sin más contexto.",
+        "Recomiendo responder el hilo pidiéndole a Karen que complete esta idea antes de cerrar el documento de respuestas, para no dejar un punto sin resolver por una omisión de redacción."
+      ]
+    },
+    {
+      autor:"Karen Peña",
+      texto:"En la firma, por la imagen usada pareciera que Nortica es una planta.",
+      tag:"Firma de Correos",
+      folder:"Firma Correos",
+      files:["img_signature.png"],
+      verdict:"ajustar",
+      claude:[
+        "Viendo el banner usado en la firma: domina visualmente una ilustración de torres de enfriamiento/planta industrial de fondo a fondo, con el texto 'Tu norte hacia la transformación digital' en segundo plano — el comentario de Karen es comprensible, la imagen comunica 'planta de generación' antes que 'empresa de servicios técnicos y digitales'.",
+        "Si el mensaje de marca que se quiere proyectar es transformación digital/automatización (consistente con su comentario anterior sobre los accesorios), sugiero reducir el tamaño o protagonismo de las torres en este banner y dar más espacio visual al texto y/o a un ícono más ligado a software/control (ej. HMI, data flow), reservando la imagen de planta para piezas donde sí se quiere mostrar la escala de los proyectos (brochure, presentación)."
+      ]
+    },
+    {
+      autor:"Karen Peña",
+      texto:"En la presentación, los accesorios usados en las plantillas y los colores de las fuentes (letras) va más a lo mecánico, y el tono azul en el fondo oscuro no resalta tanto.",
+      tag:"Presentación",
+      folder:"Presentacion",
+      files:[presentacion[0], presentacion[1], presentacion[2]],
+      verdict:"ajustar",
+      claude:[
+        "En la portada de la presentación ('Company Overview') el fondo es oscuro (azul-verde degradado) con texto blanco y un acento celeste/azul para la palabra clave — el contraste es legible, pero coincide con su punto anterior: el azul de acento no se distingue mucho del azul-verde de fondo en pantallas con poco brillo o al proyectar, mientras que el verde teal de la paleta de marca sí generaría más contraste.",
+        "Recomiendo, igual que en el punto de la paleta general, usar el verde teal (#1BD1A5) como color de énfasis en textos clave sobre fondo oscuro en toda la presentación, reservando el azul solo para fondos y elementos estructurales — esto resuelve de forma consistente tanto el comentario de 'impacto visual' como el de 'tono azul que no resalta'."
+      ]
+    },
+    {
+      autor:"Karen Peña",
+      texto:"¿Con respecto al formato de reporte, me gusta más el que usamos actualmente? El formato para reportes Wärtsilä sería homologado a este o permanecería igual?",
+      tag:"Service Report",
+      folder:"Service Report",
+      files:["Nortica Systems_Service Report_Page_1.jpg","Nortica Systems_Service Report_Page_2.jpg"],
+      verdict:"aclarar",
+      claude:[
+        "Esta es una pregunta de decisión de negocio, no un defecto de diseño — necesito que el equipo confirme si Wärtsilä (como cliente externo) tiene un formato de reporte propio que Nortica está obligada a usar contractualmente, en cuyo caso ese formato debe permanecer separado por requisito del cliente, independientemente de qué tan bien diseñado esté el nuevo formato interno.",
+        "Si no hay una obligación contractual de formato, mi recomendación de diseño es homologar todos los reportes de servicio a un solo estándar visual (el de la nueva plantilla) para mantener consistencia de marca, y simplemente preguntarle a Karen específicamente qué prefiere del formato actual (¿estructura de datos, orden de campos, algo visual?) para incorporarlo a la nueva plantilla en vez de mantener dos sistemas en paralelo."
+      ]
+    },
+  ]
+}
+];
+
+// ---- Render ----
+const wrap = document.getElementById('grid-wrap');
+let galleryRegistry = []; // for lightbox navigation: list of {src, caption}
+
+function folderPath(folder){
+  if(folder === "__logos__") return RAW_BASE + "ui_presentacion/logos_nortica/";
+  if(folder === "Firma Correos") return RAW_BASE + "firma_correos/images/";
+  return FOLDER + encodeURIComponent(folder) + "/";
+}
+
+DATA.forEach(group=>{
+  const divider = document.createElement('div');
+  divider.className = 'email-divider';
+  divider.innerHTML = `<div class="card">
+    <div class="who">Correo ${group.email} — ${group.emailMeta.who}${group.emailMeta.role ? '<small>'+group.emailMeta.role+'</small>' : ''}</div>
+    <div class="when">${group.emailMeta.when}</div>
+  </div>`;
+  wrap.appendChild(divider);
+
+  group.items.forEach(item=>{
+    const row = document.createElement('div');
+    row.className = 'row';
+
+    // Comment cell
+    const commentCell = document.createElement('div');
+    commentCell.className = 'cell comment';
+    commentCell.innerHTML = `
+      <div class="author">${item.autor}</div>
+      <p>${item.texto}</p>
+      <span class="tag">${item.tag}</span>
+    `;
+    row.appendChild(commentCell);
+
+    // Gallery cell
+    const galleryCell = document.createElement('div');
+    galleryCell.className = 'cell gallery';
+    if(!item.folder){
+      galleryCell.innerHTML = `<div class="no-doc">Sin documento asociado — comentario textual incompleto</div>`;
+    } else {
+      let html = `<div class="folder-label">${item.folder === "__logos__" ? "Logos de marca" : item.folder}</div><div class="thumbs">`;
+      const groupId = galleryRegistry.length;
+      const imgs = [];
+      item.files.forEach((f,idx)=>{
+        const src = folderPath(item.folder) + encodeURIComponent(f);
+        imgs.push({src, caption: item.folder + (item.files.length>1 ? ` (${idx+1}/${item.files.length})` : '')});
+      });
+      if(item.folder2){
+        item.files2.forEach((f,idx)=>{
+          const src = folderPath(item.folder2) + encodeURIComponent(f);
+          imgs.push({src, caption: item.folder2 + (item.files2.length>1 ? ` (${idx+1}/${item.files2.length})` : '')});
+        });
+      }
+      galleryRegistry.push(imgs);
+      imgs.forEach((im,idx)=>{
+        html += `<div class="thumb" data-group="${groupId}" data-index="${idx}">
+          <img src="${im.src}" alt="${im.caption}" loading="lazy">
+        </div>`;
+      });
+      html += `</div>`;
+      if(item.folder2){
+        html = html.replace('</div></div>', `</div><div class="folder-label" style="margin-top:10px;">${item.folder2}</div></div>`);
+      }
+      galleryCell.innerHTML = html;
+    }
+    row.appendChild(galleryCell);
+
+    // Claude cell
+    const claudeCell = document.createElement('div');
+    claudeCell.className = 'cell claude';
+    const verdictLabel = {aplicar:"✓ Recomendado aplicar", ajustar:"⚙ Ajuste sugerido", aclarar:"? Requiere aclaración", na:"— No aplica a documentos"}[item.verdict] || '';
+    let claudeHtml = `<div class="claude-label"><span class="ico">C</span>Análisis de Claude</div>`;
+    claudeHtml += `<span class="verdict ${item.verdict}">${verdictLabel}</span>`;
+    item.claude.forEach(p=>{ claudeHtml += `<p>${p}</p>`; });
+    claudeCell.innerHTML = claudeHtml;
+    row.appendChild(claudeCell);
+
+    wrap.appendChild(row);
+  });
+});
+
+// ---- Lightbox with wheel zoom + drag pan ----
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbStage = document.getElementById('lb-stage');
+const lbCaption = document.getElementById('lb-caption');
+let currentGroup = [];
+let currentIndex = 0;
+let scale = 1, panX = 0, panY = 0, dragging = false, dragStartX=0, dragStartY=0;
+
+function openLightbox(groupId, index){
+  currentGroup = galleryRegistry[groupId];
+  currentIndex = index;
+  showImage();
+  lb.classList.add('open');
+}
+function showImage(){
+  const item = currentGroup[currentIndex];
+  lbImg.src = item.src;
+  lbCaption.textContent = item.caption;
+  scale = 1; panX = 0; panY = 0;
+  applyTransform();
+}
+function applyTransform(){
+  lbImg.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
+}
+function closeLightbox(){ lb.classList.remove('open'); }
+
+document.addEventListener('click', e=>{
+  const thumb = e.target.closest('.thumb');
+  if(thumb){
+    openLightbox(parseInt(thumb.dataset.group), parseInt(thumb.dataset.index));
+  }
+});
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+lb.addEventListener('click', e=>{ if(e.target === lb) closeLightbox(); });
+document.getElementById('lb-prev').addEventListener('click', e=>{
+  e.stopPropagation();
+  currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+  showImage();
+});
+document.getElementById('lb-next').addEventListener('click', e=>{
+  e.stopPropagation();
+  currentIndex = (currentIndex + 1) % currentGroup.length;
+  showImage();
+});
+document.addEventListener('keydown', e=>{
+  if(!lb.classList.contains('open')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowRight') document.getElementById('lb-next').click();
+  if(e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+});
+lbStage.addEventListener('wheel', e=>{
+  e.preventDefault();
+  const delta = e.deltaY < 0 ? 0.15 : -0.15;
+  scale = Math.min(6, Math.max(1, scale + delta));
+  if(scale === 1){ panX = 0; panY = 0; }
+  applyTransform();
+}, {passive:false});
+lbStage.addEventListener('mousedown', e=>{
+  if(scale <= 1) return;
+  dragging = true;
+  dragStartX = e.clientX - panX;
+  dragStartY = e.clientY - panY;
+});
+window.addEventListener('mousemove', e=>{
+  if(!dragging) return;
+  panX = e.clientX - dragStartX;
+  panY = e.clientY - dragStartY;
+  applyTransform();
+});
+window.addEventListener('mouseup', ()=> dragging = false);
+</script>
+</body>
+</html>
