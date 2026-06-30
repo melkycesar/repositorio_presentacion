@@ -345,9 +345,9 @@ const DATA = [
       files:["Nortica Systems_Commercial Proposal_Page_1.jpg","Nortica Systems_Commercial Proposal_Page_2.jpg","Nortica Systems_Commercial Proposal_Page_3.jpg"],
       verdict:"aclarar",
       claude:[
-        "La portada que tengo a la vista usa una imagen nocturna de planta/torres de enfriamiento, no veo turbinas integradas explícitamente — es posible que la versión que ella revisó sea distinta a la que está en el repositorio, o que se refiera a otra plantilla. Vale la pena confirmar cuál imagen vio antes de decidir un cambio.",
-        "Sobre la pregunta de la página web terminando en azul: esto es un comentario sobre nortica.do, no sobre los documentos de Office entregados en este proyecto — no tengo ese activo para evaluarlo, recomiendo responderlo por separado con quien gestione el sitio web.",
-        "Sobre el pie de página centrado: estoy de acuerdo en que centrar el pie iguala visualmente el peso del encabezado y da una sensación más balanceada y formal; es un ajuste de bajo costo y alto impacto que recomiendo aplicar como estándar a todas las plantillas."
+        "En el documento original ustedes utilizaban la imagen de vista aérea, pero en vista de su comentario, añadí a los archivos varios fondos para que pueda reemplazarlo en las propuestas comerciales donde se desee colocar otra imagen de fondo.",
+        "Sí, está correcto colocar la extensión de la página web en azul. Esta característica no es casual; además de aportar estética, sirve para atraer la atención de quien lee justamente hacia esa particularidad de la URL de la página web de Nortica. ¿Por qué razón se querría atraer la atención hacia esa extensión? La extensión \".do\" no es la más común, por lo cual es muy necesario que quien lee note que no se asuma, por mera suposición, que es un \".com\" ni un \".com.do\" por el mero hecho de ser una página web.",
+        "El pie de página está obligado a traer equilibrio en toda la composición y, aunque no se interprete de forma consciente, forma equipo con el número de página que está en el extremo opuesto; ambos aportan equilibrio al layout completo."
       ]
     },
     {
@@ -360,7 +360,6 @@ const DATA = [
       files2:["Anfiteatro de Altos de Chavón, D.R.png","Basílica Catedral Nuestra Señora De La Altagracia Higuey. R.D.png","Casas Victorianas. Samaná, D.R.png","Faro A Colón, Santo Domingo, R.D.png","Fortaleza San Felipe, Puerto Plata. D.R.png","Parque Nacional Los Tres Ojos, Santo Domingo. R.D.png","Playa Bayahíbe, La Romana, D.R.png","Plaza Independencia, Centro Histórico. Puerto Plata, D.R.png","Puente de San Pedro De Macorís, D.R.png","Puerta de la Misericordia, Santo Domingo, D.R.png","Top_Alcazar de Colon copy 10.png","Top_Alcazar de Colon.png"],
       verdict:"ajustar",
       claude:[
-        "Esta imagen se refiere a la factura del hotel, pero el comentario se está refiriendo más a los banners que van en el cabezal de la factura.",
         "Dentro de la cultura de la empresa Nortica Systems está el orgullo nacional, y lo han expresado colocando imágenes de banderas dominicanas en algunos documentos. Entiendo que colocar imágenes solamente de Puerto Plata sería una limitación muy innecesaria, ya que la compañía da servicio de forma internacional, lo lógico sería que promocionara el país más que una provincia de este país."
       ]
     },
@@ -431,7 +430,7 @@ const DATA = [
       files:["logo_default.png","logo_manual.png","logo_blanco_y_cyan_para_fondo_orcuro.png"],
       verdict:"aclarar",
       claude:[
-        "El señor Joheves afirmó que no desea modificar el logo. Además, el logo de Nortica Systems, en mi opinión profesional, no tiene errores graves, salvo uno que otro detalle muy menor que sería imperceptible para el ojo de experto. En otras palabras, la urgencia del problema es muy menor y esta muere al momento de que el señor Joheves me dice que prefiere no tocarlo."
+        "El señor Joheves afirmó que no desea modificar el logo. Además, el logo de Nortica Systems, en mi opinión profesional, no tiene errores graves, salvo uno que otro detalle muy menor que sería imperceptible para el ojo inexperto. En otras palabras, la urgencia del problema es muy menor y esta muere al momento de que el señor Joheves me dice que prefiere no tocarlo."
       ]
     },
     {
@@ -454,7 +453,7 @@ const DATA = [
       files:["Nortica System_Certificado.jpg"],
       verdict:"aplicar",
       claude:[
-        "Con respecto a este comentario, mi respuesta es la siguiente: este cambio no lo tenía el documento original, pero fue realizada esta solicitud de modificación."
+        "Este cambio no lo tenía el documento original, pero fue realizada esta solicitud de modificación."
       ]
     },
     {
@@ -485,26 +484,16 @@ const DATA = [
     },
     {
       autor:"Karen Peña",
-      texto:"En los formatos, no se figura...",
-      tag:"Comentario incompleto",
-      folder:null,
-      files:[],
-      verdict:"aclarar",
-      claude:[
-        "Esta línea del correo quedó incompleta ('En los formatos, no se figura') — no hay forma de inferir con certeza qué quiso decir sin más contexto.",
-        "Recomiendo responder el hilo pidiéndole a Karen que complete esta idea antes de cerrar el documento de respuestas, para no dejar un punto sin resolver por una omisión de redacción."
-      ]
-    },
-    {
-      autor:"Karen Peña",
       texto:"En la firma, por la imagen usada pareciera que Nortica es una planta.",
       tag:"Firma de Correos",
       folder:"Firma Correos",
       files:["img_signature.png"],
-      verdict:"ajustar",
+      verdict:"aclarar",
       claude:[
-        "Viendo el banner usado en la firma: domina visualmente una ilustración de torres de enfriamiento/planta industrial de fondo a fondo, con el texto 'Tu norte hacia la transformación digital' en segundo plano — el comentario de Karen es comprensible, la imagen comunica 'planta de generación' antes que 'empresa de servicios técnicos y digitales'.",
-        "Si el mensaje de marca que se quiere proyectar es transformación digital/automatización (consistente con su comentario anterior sobre los accesorios), sugiero reducir el tamaño o protagonismo de las torres en este banner y dar más espacio visual al texto y/o a un ícono más ligado a software/control (ej. HMI, data flow), reservando la imagen de planta para piezas donde sí se quiere mostrar la escala de los proyectos (brochure, presentación)."
+        "La frase habla de transformación digital y la imagen representada es una planta que ha sido transformada a una forma digital; en otras palabras, una planta convencional que ha sido representada mediante un sistema de nodos digitales.",
+        "Por otra parte, el hecho de que una persona vea un correo electrónico cuya firma tiene un logo que dice la palabra Systems, y que incluso la misma imagen, antes de la frase, tiene el logo de Nortica Systems, hace poco probable que piense eso y probablemente piense en el concepto de \"planta digitalizada\" o algo parecido.",
+        "Sin contar el hecho de que las firmas digitales están al fondo, en la última parte del mensaje de correo electrónico, donde se supone que la persona ha leído el contenido y se daría cuenta de que quien les habla no es una planta.",
+        "Estaría totalmente de acuerdo con este comentario si las firmas digitales se utilizaran en la parte de arriba como una especie de cabezal, y si la imagen no tuviese el logo con la palabra Systems ni la frase que habla de transformación digital. En ese caso, la persona, antes de leer nada, lo único que vería es una imagen de una planta con efecto de nodos digitales; en ese caso sí aumentaría la probabilidad de que alguien piense eso."
       ]
     },
     {
@@ -527,8 +516,7 @@ const DATA = [
       files:["Nortica Systems_Service Report_Page_1.jpg","Nortica Systems_Service Report_Page_2.jpg"],
       verdict:"aclarar",
       claude:[
-        "Esta es una pregunta de decisión de negocio, no un defecto de diseño — necesito que el equipo confirme si Wärtsilä (como cliente externo) tiene un formato de reporte propio que Nortica está obligada a usar contractualmente, en cuyo caso ese formato debe permanecer separado por requisito del cliente, independientemente de qué tan bien diseñado esté el nuevo formato interno.",
-        "Si no hay una obligación contractual de formato, mi recomendación de diseño es homologar todos los reportes de servicio a un solo estándar visual (el de la nueva plantilla) para mantener consistencia de marca, y simplemente preguntarle a Karen específicamente qué prefiere del formato actual (¿estructura de datos, orden de campos, algo visual?) para incorporarlo a la nueva plantilla en vez de mantener dos sistemas en paralelo."
+        "Sería excelente obtener algo más de información al respecto. En el correo electrónico hay un link de descarga de las plantillas, con la finalidad de que sean descargadas y confirmado su uso práctico."
       ]
     },
   ]
